@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core">	
+<h:head>
+    <meta charset="utf-8" name="viewport" 
+    content="width=device-width, initial-scale=1" 
+    http-equiv="X-UA-Conpatible" />    
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputScript library="js" name="bootstrap.min.js"/>
+    <title>Interfaz Profesor - Gestión de  Alumnos</title>
+</h:head>
+<h:body>
+
+<header class="navbar navbar-dark sticky-top bg-danger flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Campus Virtual Fe y Alegria</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Cerrar Sesión</a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+         <h:form>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <h:commandButton class="btn btn-link active" action="#{usuarioBean.home()}" value="Inicio"></h:commandButton>
+          </li>
+          <li class="nav-item">
+            <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_alumnos()}" value="Gestion de alumnos"></h:commandButton>          
+          </li>
+          <li class="nav-item">
+             <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_aulas()}" value="Gestion de aulas"></h:commandButton>
+          </li>
+          <li class="nav-item">
+             <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_calificaciones()}" value="Gestion de calificaciones"></h:commandButton>
+          </li>
+        </ul>
+        </h:form>
+      </div>
+    </nav>
+    
+   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Gestión de  Alumnos</h1>
+      </div>
+      <div style="text-align: right;" class="table-responsive">
+       <h:form>
+ 		<h:commandButton action="#{usuarioBean.nuevo()}" class="btn btn-primary" value="Crear nuevo usuario"></h:commandButton>
+              <h:dataTable class="table" value="#{usuarioBean.obtenerUsuarios()}" var="usuario">
+	    <h:column>
+	    	<f:facet  name="header">Id</f:facet>
+	    	<h:outputText value="#{usuario.idusuario}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Nombres</f:facet>
+	    	<h:outputText value="#{usuario.nombres}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Apellidos</f:facet>
+	    	<h:outputText value="#{usuario.apellidos}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">N° documento</f:facet>
+	    	<h:outputText value="#{usuario.documento}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Contraseña</f:facet>
+	    	<h:outputText value="#{usuario.contrasenna}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Perfil</f:facet>
+	    	<h:outputText value="#{usuario.fk_idperfil}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Grado</f:facet>
+	    	<h:outputText value="#{usuario.fk_idgrado}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Editar</f:facet>
+		    <h:commandButton class="btn btn-outline-primary" action="#{usuarioBean.editar(usuario.idusuario)}" value="Editar">
+		    </h:commandButton>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Eliminar</f:facet>
+		    <h:commandButton class="btn btn-outline-danger" action="#{usuarioBean.eliminar(usuario.idusuario)}" value="Eliminar">
+		    </h:commandButton>
+	      </h:column>
+	      <h:column>
+	    	<f:facet name="header">Asignar</f:facet>
+	    	<h:commandButton class="btn btn-outline-success" action="#{usuarioBean.asignar(usuario.idusuario)}" value="Asignar">
+	    	</h:commandButton>
+	      </h:column>
+    </h:dataTable>
+    </h:form>
+      </div>
+    </main>
+</div>
+</div>
+</h:body>
+</html>
