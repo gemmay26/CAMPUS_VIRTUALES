@@ -1,11 +1,13 @@
 package com.campus.model;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,23 @@ public class Grado {
 	
 	@Column
 	private String descripcion;
+		
+	@OneToMany (cascade =  CascadeType.ALL, mappedBy = "grado")
+	private List<Usuario> usuariosList;
+
+	@OneToMany (cascade =  CascadeType.ALL, mappedBy = "grado")
+	private List<Grupo> gruposList;
+	
+	@OneToMany (cascade =  CascadeType.ALL, mappedBy = "grado")
+	private List<Curso> cursosList;
+	
+	public List<Grupo> getGruposList() {
+		return gruposList;
+	}
+
+	public void setGruposList(List<Grupo> gruposList) {
+		this.gruposList = gruposList;
+	}
 
 	public Long getIdgrado() {
 		return idgrado;
@@ -34,8 +53,12 @@ public class Grado {
 		this.descripcion = descripcion;
 	}
 
-	@Override
-	public String toString() {
-		return "Grado [idgrado=" + idgrado + ", descripcion=" + descripcion + "]";
+	public List<Usuario> getUsuariosList() {
+		return usuariosList;
 	}
+
+	public void setUsuariosList(List<Usuario> usuariosList) {
+		this.usuariosList = usuariosList;
+	}
+	
 }

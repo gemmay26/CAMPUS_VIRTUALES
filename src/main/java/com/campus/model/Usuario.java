@@ -1,5 +1,8 @@
 package com.campus.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="usuarios")
@@ -17,15 +23,19 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idusuario;
 	
+	@NotNull
 	@Column
 	private String nombres;
 	
+	@NotNull
 	@Column
 	private String apellidos;
 	
+	@NotNull
 	@Column
 	private String documento;
 	
+	@NotNull
 	@Column
 	private String contrasenna;
 		
@@ -36,14 +46,41 @@ public class Usuario {
 	private Long fk_idgrado;
 	
 	
- /*   @ManyToOne
-    @JoinColumn(name = "fk_idperfil", insertable = false, updatable = false)
+    public Long getFk_idperfil() {
+		return fk_idperfil;
+	}
+
+	public void setFk_idperfil(Long fk_idperfil) {
+		this.fk_idperfil = fk_idperfil;
+	}
+
+	public Long getFk_idgrado() {
+		return fk_idgrado;
+	}
+
+	public void setFk_idgrado(Long fk_idgrado) {
+		this.fk_idgrado = fk_idgrado;
+	}
+
+	public List<Respuesta> getRespuestasList() {
+		return respuestasList;
+	}
+
+	public void setRespuestasList(List<Respuesta> respuestasList) {
+		this.respuestasList = respuestasList;
+	}
+
+	@JoinColumn(name = "fk_idperfil", insertable= false, updatable= false)
+    @ManyToOne (optional = false)
     private Perfil perfil;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_idgrado", insertable = false, updatable = false)
+   
+    @JoinColumn(name = "fk_idgrado", insertable= false, updatable= false)
+    @ManyToOne (optional = false)
     private Grado grado;
-	*/
+	
+    @OneToMany (cascade =  CascadeType.ALL, mappedBy = "usuario")
+	private List<Respuesta> respuestasList;
 
 	public Long getIdusuario() {
 		return idusuario;
@@ -85,27 +122,19 @@ public class Usuario {
 		this.contrasenna = contrasenna;
 	}
 
-	public Long getFk_idperfil() {
-		return fk_idperfil;
+	public Perfil getPerfil() {
+		return perfil;
 	}
 
-	public void setFk_idperfil(Long fk_idperfil) {
-		this.fk_idperfil = fk_idperfil;
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
-	public Long getFk_idgrado() {
-		return fk_idgrado;
+	public Grado getGrado() {
+		return grado;
 	}
 
-	public void setFk_idgrado(Long fk_idgrado) {
-		this.fk_idgrado = fk_idgrado;
+	public void setGrado(Grado grado) {
+		this.grado = grado;
 	}
-
-	@Override
-	public String toString() {
-		return "Usuario [idusuario=" + idusuario + ", nombres=" + nombres + ", apellidos=" + apellidos + ", documento="
-				+ documento + ", contrasenna=" + contrasenna + ", fk_idperfil=" + fk_idperfil + ", fk_idgrado="
-				+ fk_idgrado + "]";
-	}
-	
 }

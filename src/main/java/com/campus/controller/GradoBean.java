@@ -31,6 +31,19 @@ public class GradoBean {
 	}
 	//////
 	
+	public String nuevo() {
+		Grado g = new Grado();
+		Map<String, Object> sessionMap=FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		sessionMap.put("grado", g);
+		return "/faces/gestion_aulas/crear-grado.xhtml";
+	}
+	
+	public String guardar(Grado grado) {
+		GradoDAO gradoDAO = new GradoDAO();
+		gradoDAO.guardar(grado);
+		return "/faces/gestion_aulas/index.xhtml";
+	}
+	
 	public List<Grado> obtenerGrados(){
 		GradoDAO gradoDAO= new GradoDAO();
 		return gradoDAO.obtenerGrados();

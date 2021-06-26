@@ -8,7 +8,7 @@
     http-equiv="X-UA-Conpatible" />    
     <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     <h:outputScript library="js" name="bootstrap.min.js"/>
-    <title>Interfaz Profesor - Gestión de  Aulas</title>
+    <title>Interfaz Profesor - Gestión de calificaciones</title>
 </h:head>
 <h:body>
 
@@ -43,72 +43,58 @@
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_calificaciones()}" value="Gestion de calificaciones"></h:commandButton>
           </li>
         </ul>
-          </h:form>
+        </h:form>
       </div>
     </nav>
     
    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Listado de grados"</h1>
+        <h1 class="h2">Gestión de calificaciones</h1>
       </div>
       <div style="text-align: right;" class="table-responsive">
        <h:form>
- 	<h:commandButton class="btn btn-primary" style="margin-right:10px;" action="#{gradoBean.nuevo()}" value="Crear grado"></h:commandButton>
-    <h:commandButton class="btn btn-primary" style="margin-right:10px;"  value="Crear grupo"></h:commandButton>
-    <h:commandButton class="btn btn-success" style="margin-right:10px;"  value="Crear Actividad"></h:commandButton>
-    <h:commandButton class="btn btn-success" style="margin-right:10px;"  value="Ver Actividad"></h:commandButton>
-    
- 
-    <h:dataTable class="table" value="#{gradoBean.obtenerGrados()}" var="grado" >
-	      <h:column>
-	    	<f:facet name="header">Nombre de grado</f:facet>
-	    	<h:outputText value="#{grado.descripcion}"></h:outputText>
-	    </h:column>
+ 		<h:commandButton action="#{usuarioBean.nuevo()}" class="btn btn-primary" value="Crear nuevo usuario"></h:commandButton>
+              <h:dataTable class="table" value="#{usuarioBean.obtenerUsuarios()}" var="usuario">
 	    <h:column>
-	    	<f:facet name="header">Cant. de Alumnos</f:facet>
-	    	<h:outputText value=""></h:outputText>
+	    	<f:facet  name="header">Id</f:facet>
+	    	<h:outputText value="#{usuario.idusuario}"></h:outputText>
 	    </h:column>
 	      <h:column>
-	    	<f:facet name="header">Cant. Grupos</f:facet>
-	    	<h:outputText value=""></h:outputText>
+	    	<f:facet name="header">Nombres</f:facet>
+	    	<h:outputText value="#{usuario.nombres}"></h:outputText>
 	    </h:column>
 	      <h:column>
-	    	<f:facet name="header">Cant. Actividades</f:facet>
-	    	<h:outputText value=""></h:outputText>
-	    </h:column>	  
-	      <h:column>
-	    	<f:facet name="header">Acción</f:facet>
-		    <h:commandButton class="btn btn-outline-primary" action="#{gradoBean.editar(grado.idgrado)}" value="Editar"></h:commandButton>
+	    	<f:facet name="header">Apellidos</f:facet>
+	    	<h:outputText value="#{usuario.apellidos}"></h:outputText>
 	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Perfil</f:facet>
+	    	<h:outputText value="#{usuario.fk_idperfil}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Grado</f:facet>
+	    	<h:outputText value="#{usuario.fk_idgrado}"></h:outputText>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Editar</f:facet>
+		    <h:commandButton class="btn btn-outline-primary" action="#{usuarioBean.editar(usuario.idusuario)}" value="Editar">
+		    </h:commandButton>
+	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Eliminar</f:facet>
+		    <h:commandButton class="btn btn-outline-danger" action="#{usuarioBean.eliminar(usuario.idusuario)}" value="Eliminar">
+		    </h:commandButton>
+	      </h:column>
+	      <h:column>
+	    	<f:facet name="header">Asignar</f:facet>
+	    	<h:commandButton class="btn btn-outline-success" action="#{usuarioBean.asignar(usuario.idusuario)}" value="Asignar">
+	    	</h:commandButton>
+	      </h:column>
     </h:dataTable>
-    <h2>
-    <h:outputText style="float: left;" value="Listado de grupos"></h:outputText>
-    </h2>
-    <h:dataTable class="table" value="#{grupoBean.obtenerGrupos()}" var="grupo">
-	      <h:column>
-	    	<f:facet name="header">Nombre de grupo</f:facet>
-	    	<h:outputText value="#{grupo.descripcion}"></h:outputText>
-	    </h:column>
-	      <h:column>
-	    	<f:facet name="header">Pertenece al grado</f:facet>
-	    	<h:outputText value="#{grupo.fk_idgrado}"></h:outputText>
-	    </h:column>
-	      <h:column>
-	    	<f:facet name="header">Cant. Actividades</f:facet>
-	    	<h:outputText value=""></h:outputText>
-	    </h:column>	  
-	      <h:column>
-	    	<f:facet name="header">Acción</f:facet>
-		    <h:commandButton class="btn btn-outline-primary" action="#{grupoBean.editar(grupo.idgrupo)}" value="Editar"></h:commandButton>
-	    </h:column>
-    </h:dataTable>
-    
     </h:form>
-       
       </div>
     </main>
 </div>
 </div>
-    
 </h:body>
 </html>

@@ -5,6 +5,8 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 	
+	/***METODO DE CONEXION A NUESTRA UNIDAD DE PRESISTENCIA ***/
+	
 	private static final String PERSISTENCE_UNIT_NAME = "PERSISTENCE";
 	private static EntityManagerFactory factory;
 
@@ -15,6 +17,7 @@ public class JPAUtil {
 		return factory;				
 	}
 	
+	//Cierra conexion
 	public static void shutdown() {
 		if (factory!=null) {
 			factory.close();
