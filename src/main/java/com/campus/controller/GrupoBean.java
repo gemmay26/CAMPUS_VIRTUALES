@@ -1,6 +1,5 @@
 package com.campus.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,29 +7,26 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import com.campus.dao.GradoDAO;
 import com.campus.dao.GrupoDAO;
-import com.campus.model.Grado;
 import com.campus.model.Grupo;
 
 @ManagedBean(name= "grupoBean")
 @RequestScoped
 public class GrupoBean {
-//MENU
-	public String home() {
-		return "/faces/index.xhtml";
+
+	public String nuevo() {
+		Grupo g = new Grupo();
+		Map<String, Object> sessionMap=FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		sessionMap.put("grupo", g);
+		return "/faces/gestion_aulas/crear-grupo.xhtml";
 	}
-	public String gestion_alumnos() {
-		return "/faces/gestion_alumnos/index.xhtml";
-	}
-	public String gestion_aulas() {
+	
+	public String guardar(Grupo grupo) {
+		GrupoDAO grupoDAO = new GrupoDAO();
+		grupoDAO.guardar(grupo);
 		return "/faces/gestion_aulas/index.xhtml";
 	}
-	public String gestion_calificaciones() {
-		return "/faces/g_calificaciones.xhtml";
-	}
-	//////
-	
+		
 	public List<Grupo> obtenerGrupos(){
 		GrupoDAO grupoDAO= new GrupoDAO();
 		return grupoDAO.obtenerGrupos();

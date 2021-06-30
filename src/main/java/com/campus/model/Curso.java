@@ -32,7 +32,8 @@ public class Curso {
     private Grado grado;
 	
 	@OneToMany (cascade =  CascadeType.ALL, mappedBy = "curso")
-	private List<Actividad> actividadesList;
+	
+	private List<Actividad> actividadList;
 	
 	public Long getIdcurso() {
 		return idcurso;
@@ -67,16 +68,16 @@ public class Curso {
 	}
 
 	public List<Actividad> getActividadesList() {
-		return actividadesList;
+		return actividadList;
 	}
 
 	public void setActividadesList(List<Actividad> actividadesList) {
-		this.actividadesList = actividadesList;
+		this.actividadList = actividadesList;
 	}
 
 	@Override
 	public String toString() {
 		return "Curso [idcurso=" + idcurso + ", descripcion=" + descripcion + ", fk_idgrado=" + fk_idgrado + ", grado="
-				+ grado + ", actividadesList=" + actividadesList + "]";
+				+ grado + ", actividadesList=" + actividadList + "]";
 	}
 }

@@ -1,6 +1,5 @@
 package com.campus.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +25,11 @@ public class UsuarioBean {
 	public String gestion_aulas() {
 		return "/faces/gestion_aulas/index.xhtml";
 	}
+	public String gestion_cursos() {
+		return "/faces/gestion_cursos/index.xhtml";
+	}
 	public String gestion_calificaciones() {
-		return "/faces/g_calificaciones.xhtml";
+		return "/faces/gestion_calificaciones/index.xhtml";
 	}
 	//////
 	

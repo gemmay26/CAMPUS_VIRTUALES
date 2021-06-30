@@ -40,6 +40,9 @@
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_aulas()}" value="Gestion de aulas"></h:commandButton>
           </li>
           <li class="nav-item">
+             <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_cursos()}" value="Gestion de cursos"></h:commandButton>
+          </li>
+          <li class="nav-item">
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_calificaciones()}" value="Gestion de calificaciones"></h:commandButton>
           </li>
         </ul>
@@ -54,11 +57,9 @@
       <div style="text-align: right;" class="table-responsive">
        <h:form>
  	<h:commandButton class="btn btn-primary" style="margin-right:10px;" action="#{gradoBean.nuevo()}" value="Crear grado"></h:commandButton>
-    <h:commandButton class="btn btn-primary" style="margin-right:10px;"  value="Crear grupo"></h:commandButton>
-    <h:commandButton class="btn btn-success" style="margin-right:10px;"  value="Crear Actividad"></h:commandButton>
-    <h:commandButton class="btn btn-success" style="margin-right:10px;"  value="Ver Actividad"></h:commandButton>
-    
- 
+    <h:commandButton class="btn btn-primary" style="margin-right:10px;" action="#{grupoBean.nuevo()}" value="Crear grupo"></h:commandButton>
+    <h:commandButton class="btn btn-primary" style="margin-right:10px;" action="#{actividadBean.nuevo()}" value="Crear Actividad"></h:commandButton>
+
     <h:dataTable class="table" value="#{gradoBean.obtenerGrados()}" var="grado" >
 	      <h:column>
 	    	<f:facet name="header">Nombre de grado</f:facet>
@@ -76,10 +77,21 @@
 	    	<f:facet name="header">Cant. Actividades</f:facet>
 	    	<h:outputText value=""></h:outputText>
 	    </h:column>	  
-	      <h:column>
-	    	<f:facet name="header">Acción</f:facet>
-		    <h:commandButton class="btn btn-outline-primary" action="#{gradoBean.editar(grado.idgrado)}" value="Editar"></h:commandButton>
+	     <h:column>
+	    	<f:facet name="header">Ver</f:facet>
+		    <h:commandButton class="btn btn-outline-success" action="#{gradoBean.ver_grado(grado.idgrado)}" value="Ver grado">
+		    </h:commandButton>
 	    </h:column>
+	      <h:column>
+	    	<f:facet name="header">Editar</f:facet>
+		    <h:commandButton class="btn btn-outline-primary" action="#{gradoBean.editar(grado.idgrado)}" value="Editar">
+		    </h:commandButton>
+	    </h:column>
+	     <h:column>
+	    	<f:facet name="header">Eliminar</f:facet>
+		    <h:commandButton class="btn btn-outline-danger" action="#{gradoBean.eliminar(grado.idgrado)}" value="Eliminar">
+		    </h:commandButton>
+	      </h:column>
     </h:dataTable>
     <h2>
     <h:outputText style="float: left;" value="Listado de grupos"></h:outputText>

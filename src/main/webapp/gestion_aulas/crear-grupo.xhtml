@@ -40,6 +40,9 @@
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_aulas()}" value="Gestion de aulas"></h:commandButton>
           </li>
           <li class="nav-item">
+             <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_cursos()}" value="Gestion de cursos"></h:commandButton>
+          </li>
+          <li class="nav-item">
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_calificaciones()}" value="Gestion de calificaciones"></h:commandButton>
           </li>
         </ul>
@@ -57,13 +60,13 @@
 		<h:panelGrid columns="2" cellspacing="20">
  
 		 <h:outputText value="Codigo de grupo: "></h:outputText>
-		 <h:inputText value="#{usuario.apellidos}"></h:inputText>
+		 <h:inputText value="#{grupo.descripcion}"></h:inputText>
 		 
 		 <h:outputText value="Grado asignado: "></h:outputText>
-		 <h:inputText value="#{usuario.documento}"></h:inputText>
+		 <h:inputText value="#{grupo.fk_idgrado}"></h:inputText>
 
 		 <f:facet name="footer">
-		 	<h:commandButton action="#{usuarioBean.actualizar(usuario)}" value="Guardar"></h:commandButton>
+		 	<h:commandButton action="#{grupoBean.actualizar(grupo)}" value="Guardar"></h:commandButton>
 		 </f:facet>
 		 
 		</h:panelGrid>

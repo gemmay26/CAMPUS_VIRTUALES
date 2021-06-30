@@ -6,13 +6,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.campus.model.Grado;
 import com.campus.model.Grupo;
 import com.campus.model.JPAUtil;
 
 public class GrupoDAO {
 	EntityManager entity=JPAUtil.getEntityManagerFactory().createEntityManager();
 
+//GUARDAR GRUPO	
+		public void guardar(Grupo grupo) {
+			entity.getTransaction().begin();
+			entity.persist(grupo);
+			entity.getTransaction().commit();
+		//	JPAUtil.shutdown();
+			
+		}
+		
 //EDITAR USUARIO 
 	public void editar(Grupo grupo) {
 		entity.getTransaction().begin();

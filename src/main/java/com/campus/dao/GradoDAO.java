@@ -2,10 +2,8 @@ package com.campus.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import com.campus.model.JPAUtil;
 import com.campus.model.Usuario;
 import com.campus.model.Grado;
@@ -38,6 +36,15 @@ public class GradoDAO {
 		return g;
 	}
 	
+	//ELIMINAR USUARIO
+	public void eliminar(Long idgrado) {
+		Grado u = new Grado();
+		u =  entity.find(Grado.class, idgrado);
+		entity.getTransaction().begin();
+		entity.remove(u);
+		entity.getTransaction().commit();
+	}
+	
 //OBTENER TODOS LOS GRADOS 
 	public List<Grado> obtenerGrados(){
 		List<Grado> listaGrados = new ArrayList<>();
@@ -46,9 +53,4 @@ public class GradoDAO {
 		return listaGrados;
 	}
 	
-//CONTAR LOS USUARIO DE CADA GRADO 
-/*	public Grado contar(Long idgrado) {
-	 Grado c = new Grado();
-	 return c;
-	}*/
 }

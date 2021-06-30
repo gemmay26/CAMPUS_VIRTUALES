@@ -40,6 +40,9 @@
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_aulas()}" value="Gestion de aulas"></h:commandButton>
           </li>
           <li class="nav-item">
+             <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_cursos()}" value="Gestion de cursos"></h:commandButton>
+          </li>
+          <li class="nav-item">
              <h:commandButton class="btn btn-link" action="#{usuarioBean.gestion_calificaciones()}" value="Gestion de calificaciones"></h:commandButton>
           </li>
         </ul>
@@ -55,24 +58,21 @@
        
      <h:form>
 		<h:panelGrid columns="2" cellspacing="20">
-		
-		 <h:outputText value="Fecha de creacion: "></h:outputText>
-		 <h:inputText value="#{usuario.nombres}"></h:inputText>
-		 
+	
 		 <h:outputText value="Titulo:"></h:outputText>
-		 <h:inputText value="#{usuario.apellidos}"></h:inputText>
+		 <h:inputText value="#{actividad.titulo}"></h:inputText>
 		 
 		 <h:outputText value="Descripción: "></h:outputText>
-		 <h:inputText value="#{usuario.documento}"></h:inputText>
+		 <h:inputText value="#{actividad.descripcion}"></h:inputText>
+		 	 
+		 <h:outputText value="Grupo asignado: "></h:outputText>
+		 <h:inputText value="#{actividad.fk_idgrupo}"></h:inputText>
 		
 		 <h:outputText value="Curso asignado: "></h:outputText>
-		 <h:inputText value="#{usuario.fk_idperfil}"></h:inputText>
-		 
-		 <h:outputText value="Grupo asignado: "></h:outputText>
-		 <h:inputText value="#{usuario.contrasenna}"></h:inputText>
-		 
+		 <h:inputText value="#{actividad.fk_idcurso}"></h:inputText>
+	
 		 <f:facet name="footer">
-		 	<h:commandButton action="#{usuarioBean.actualizar(usuario)}" value="Guardar"></h:commandButton>
+		 	<h:commandButton action="#{actividadBean.actualizar(actividad)}" value="Guardar"></h:commandButton>
 		 </f:facet>
 		</h:panelGrid>
 	</h:form>

@@ -17,14 +17,13 @@ import javax.persistence.Table;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name="actividades")
+@Table(name="actividad")
 
 public class Actividad {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idactividad;
 	
-	@NotNull
 	@Column
 	private Date fecha;
 	
@@ -137,12 +136,5 @@ public class Actividad {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Actividad [idactividad=" + idactividad + ", fecha=" + fecha + ", titulo=" + titulo + ", descripcion="
-				+ descripcion + ", fk_idgrupo=" + fk_idgrupo + ", fk_idcurso=" + fk_idcurso + ", grupo=" + grupo
-				+ ", curso=" + curso + ", respuestasList=" + respuestasList + "]";
-	}
+	
 }
